@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -7,7 +8,17 @@ using namespace std;
 
 int main(){
 
-  ofstream dataFile("gameHistory.txt");
+  cout << "Hello, Welcome to League of Legends game stat tracker! " << endl;
+
+  cout << "Woud you like to add a new game to your records? y or n" << endl;
+
+  string addData;
+
+  cin >> addData;
+
+  if (addData == "y" ){
+
+    ofstream dataFile("gameHistory.txt", ios::app);
 
   string champName;
 
@@ -25,14 +36,56 @@ int main(){
 
   string notes;
 
+  
   if (dataFile.is_open()) {
 
     cout << "Please enter champion name, lane, kill, death, assist, cs, result, notes: " << endl;
-    cout << "Once you are done enter done to end." << endl;
+    cout << "Once you are done enter 'done' to end." << endl;
 
-    while ( cin
+    string complete;
+
+    complete = "no" ;
 
 
+    while ( complete != "done"){
+      cout << "Champion name: " ;
+      cin >> champName;
+
+      cout << "lane: " ;
+      cin >> lane ;
+
+      cout << "kill: " ;
+      cin >> kill;
+
+      cout << "death: ";
+      cin >> death ;
+
+      cout << "assist: ";
+      cin >> assist;
+
+      cout << "cs: " ;
+      cin >> creepScore;
+
+      cout << "win/loss: ";
+      cin >> result ;
+
+      cin.ignore(); //helps clear buffer for getline
+      
+      cout << "enter any specific notes: ";
+      getline (cin,notes);
+
+      cout << "are you done entering game data? If so, type 'done' or else 'n': ";
+
+      cin >> complete ;
+
+      dataFile << champName <<' ' << lane <<' ' << kill <<' ' << death <<' ' << assist <<' ' << creepScore <<' ' << result <<' ' << notes << endl;
+
+
+    }
+    dataFile.close();
+  }
   
-
+  }
+  
+  
 }
