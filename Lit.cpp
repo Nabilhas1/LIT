@@ -86,6 +86,32 @@ int main(){
   }
   
   }
+
+  cout << "Would you like to read display previously entered data? y or n" << endl;
+
+  string readData;
+
+  cin >> readData;  
   
-  
+  if (readData == "y"){
+
+    ifstream dataFile ("gameHistory.txt");
+
+    string champName;
+    string lane;
+    int kill;
+    int death;
+    int assist;
+    int creepScore;
+    string result;
+    string notes;
+
+    if (dataFile.is_open()){
+
+      while (dataFile>> champName >> lane >> kill >> death >> assist >> creepScore>> result && getline(dataFile, notes) ){
+
+	cout << champName<<" " << lane << " " << kill << " " << death << " " << assist<< " "  << creepScore<< " " << result<< " " << notes << endl; }
+    }
+  }
+
 }
