@@ -4,6 +4,10 @@
 
 using namespace std;
 
+
+string getWhichChamp();
+
+
 // read page 519 of c++ book
 
 int main(){
@@ -87,13 +91,19 @@ int main(){
   
   }
 
-  cout << "Would you like to read display previously entered data? y or n" << endl;
+  cout << "Would you like to display previously entered data? y or n" << endl;
 
   string readData;
 
   cin >> readData;  
+
+  cout << "Would you like to see a specific champion? y or n" << endl;
+
+  string specificChamp;
+
+  cin >> specificChamp;
   
-  if (readData == "y"){
+  if (readData == "y" && specificChamp == "n" ){
 
     ifstream dataFile ("gameHistory.txt");
 
@@ -113,5 +123,53 @@ int main(){
 	cout << champName<<" " << lane << " " << kill << " " << death << " " << assist<< " "  << creepScore<< " " << result<< " " << notes << endl; }
     }
   }
+
+  if (readData == "y" && specificChamp == "y"){
+
+    string whichChamp;
+
+    whichChamp = getWhichChamp();
+
+    while (whichChamp != "done"){
+
+      ifstream dataFile("gameHistory.txt");
+
+      string champName;
+      string lane;
+      int kill;
+      int death;
+      int assist;
+      int creepScore;
+      string result;
+      string notes;
+
+      if (dataFile.is_open()){
+
+	while (dataFile >> champName >> lane >> kill >> death >> assist >> creepScore >> result && getline(dataFile, notes) ) {
+
+	  if (champName == whichChamp){
+
+	    cout << champName << " " << lane << " " << kill << " " << death << " " << assist << " " << creepScore << " " << result << " " << notes << endl;
+
+	  }
+	}
+      }
+
+      whichChamp = getWhichChamp();
+
+    }
+  }
+
+}
+
+string getWhichChamp() {
+
+    cout << "Which champion would you like to see? if done enter 'done'" << endl;
+
+    string choice;
+
+    cin >> choice;
+
+    return choice;
 
 }
