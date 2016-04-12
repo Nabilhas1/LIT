@@ -6,7 +6,7 @@ using namespace std;
 
 
 string getWhichChamp();
-
+int getLineCount();
 
 // read page 519 of c++ book
 
@@ -20,6 +20,8 @@ int main(){
 
   cin >> addData;
 
+
+  //add new data
   if (addData == "y" ){
 
     ofstream dataFile("gameHistory.txt", ios::app);
@@ -102,7 +104,7 @@ int main(){
   string specificChamp;
 
   cin >> specificChamp;
-  
+  // display all data  
   if (readData == "y" && specificChamp == "n" ){
 
     ifstream dataFile ("gameHistory.txt");
@@ -123,6 +125,8 @@ int main(){
 	cout << champName<<" " << lane << " " << kill << " " << death << " " << assist<< " "  << creepScore<< " " << result<< " " << notes << endl; }
     }
   }
+
+  //display specific champ
 
   if (readData == "y" && specificChamp == "y"){
 
@@ -160,8 +164,69 @@ int main(){
     }
   }
 
+
+
+  // delete entered data
+  cout << "Would you like to delete match record? y or n"<< endl;
+
+  string deleteMatch;
+
+  cin >> deleteMatch;
+
+  if (deleteMatch == "y"){
+
+    int lineCount;
+
+    lineCount = getLineCount();
+
+    cout << "You have a total of " << lineCount << " games entered" << endl;
+    cout << "How many lines would you like to delete from the end? enter a number" << endl;
+
+    int numbLines;
+    cin >> numbLines;
+
+    int newNumbLines;
+    newNumbLines = lineCount - numbLines;
+
+    //input file
+    ifstream dataFileIn("gameHistory.txt");
+
+    //temp output file
+    ofstream dataFileOut("temp.txt");
+
+    string champName;
+    string lane;
+    int kill;
+    int death;
+    int assist;
+    int creepScore;
+    string result;
+    string notes;
+
+    if (newNumbLines > 0){
+    if (dataFileIn.is_open() && dataFileOut.is_open()){
+
+      while (newNumbLines > 0){
+
+	dataFileIn >> champName >> lane >> kill >> death >> assist >> creepScore >> result ;
+	getline(dataFileIn, notes);
+
+	dataFileOut << champName <<" " << lane <<" " << kill <<" " << death <<" " << assist <<" " << creepScore <<" " << result <<" " << notes << endl;
+
+	newNumbLines = newNumbLines - 1;
+
+
+      }
+      dataFileOut.close();
+      rename("gameHistory.txt" , "oldGameHistory.txt");
+      rename("tempt.txt" , "gameHistory.txt");
+    }
+    }
+  }
 }
 
+
+//get which champ 
 string getWhichChamp() {
 
     cout << "Which champion would you like to see? if done enter 'done'" << endl;
@@ -171,5 +236,35 @@ string getWhichChamp() {
     cin >> choice;
 
     return choice;
+
+}
+
+//get number of games entered
+
+int getLineCount(){
+
+  int count;
+  count = 0;
+
+  ifstream dataFile("gameHistory.txt");
+
+  string champName;
+  string lane;
+  int kill;
+  int death;
+  int assist;
+  int creepScore;
+  string result;
+  string notes;
+
+  if (dataFile.is_open()){
+
+    while ( dataFile >> champName >> lane >> kill >> death >> assist >> creepScore >> result && getline(dataFile, notes)){
+
+      count = count + 1;
+
+    }
+  }
+  return count;
 
 }

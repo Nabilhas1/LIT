@@ -1,4 +1,2 @@
-vayne top 1 2 3 195 win will it actually work?
-xerath mid 100 20 30 30000 loss maybe it works wtf is c++
-vayne top 11 2 19 195 win yay good progress nambol
-sion bot 12 3 2 199 loss we got rekt duhhhh
+vayne bot 1 2 3 4 win   okay game
+xerath mid 2 3 4 34 loss   somewhat okay game
