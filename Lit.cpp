@@ -203,7 +203,7 @@ int main(){
     string result;
     string notes;
 
-    if (newNumbLines > 0){
+    if (numbLines > 0){
     if (dataFileIn.is_open() && dataFileOut.is_open()){
 
       while (newNumbLines > 0){
@@ -219,7 +219,7 @@ int main(){
       }
       dataFileOut.close();
       rename("gameHistory.txt" , "oldGameHistory.txt");
-      rename("tempt.txt" , "gameHistory.txt");
+      rename("temp.txt" , "gameHistory.txt");
     }
     }
   }

@@ -1,2 +1,3 @@
-vayne bot 1 2 3 4 win  okay game
-xerath mid 2 3 4 34 loss  somewhat okay game
+vayne top 1 2 3 4 win i always win
+vayne mid 1 2 3 4 win i only play vayne
+vayne support 1 2 3 4 win vayne or feed
