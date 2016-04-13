@@ -1,3 +1,19 @@
+/*
+
+
+current issues and future things to work on:
+
+1. make program object oriented if possible
+
+2. check if user input is what it is supposed to be
+
+3. if user wants to display entered games check if file is empty or not
+
+
+
+*/
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -99,6 +115,8 @@ int main(){
 
   cin >> readData;  
 
+  if (readData == "y"){
+
   cout << "Would you like to see a specific champion? y or n" << endl;
 
   string specificChamp;
@@ -125,6 +143,7 @@ int main(){
 	cout << champName<<" " << lane << " " << kill << " " << death << " " << assist<< " "  << creepScore<< " " << result<< " " << notes << endl; }
     }
   }
+  
 
   //display specific champ
 
@@ -162,8 +181,9 @@ int main(){
       whichChamp = getWhichChamp();
 
     }
+  
   }
-
+  }
 
 
   // delete entered data
@@ -221,7 +241,7 @@ int main(){
       rename("gameHistory.txt" , "oldGameHistory.txt");
       rename("temp.txt" , "gameHistory.txt");
     }
-    }
+    }  
   }
 }
 
