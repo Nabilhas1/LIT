@@ -1,3 +1,14 @@
+/* constructors still need to be constructed
+
+additional functions may be needed
+
+I am not even sure if this is gonna work properly
+
+maybe add overloaded >> and << operators 
+
+*/
+
+
 #ifndef GAME_H
 #define GAME_H
 
@@ -21,7 +32,6 @@ class Game {
 
  public:
 
-  Game();
   Game();
   Game();
 
