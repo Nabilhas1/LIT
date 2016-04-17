@@ -22,11 +22,11 @@ class Game {
   int m_death;
   int m_assist;
   int m_creepScore;
-  string result;
-  string notes;
+  string m_result;
+  string m_notes;
 
 
-  int kda;
+  int m_KDA;
 
 
 
